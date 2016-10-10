@@ -1,0 +1,218 @@
+
+.ib{
+  display: inline-block;
+}
+
+ul,li{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+header.login-header{
+  background: #2c3034;
+  height: 63px;
+}
+
+
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn.active.focus{
+  outline: none;
+}
+
+
+textarea,input{
+  outline: none;
+}
+
+
+
+.login-form{
+  background: white;
+}
+
+
+.container{
+  width: 1000px !important;
+  background:#337ab7;
+}
+
+
+.h100{
+  height: 100%;
+}
+.tb{
+  display: table;
+
+  .cell{
+    display: table-cell;
+  }
+
+  .vm{
+    vertical-align: middle;
+  }
+  .vt{
+    vertical-align: top;
+  }
+}
+
+
+section.login-content{
+
+  //最小高度
+  min-height: 500px;
+
+  .bg-pic{
+    position: relative;
+
+    .bg-title{
+      position: absolute;
+      left: 0px;
+      top: 248px;
+    }
+  }
+
+
+
+  .login-seq{
+    margin-top: -90px;
+  }
+
+
+  .login-form{
+    padding: 24px 46px  30px 46px;
+    display: inline-block;
+
+    position: absolute;
+    top: 150px;
+    width: 390px;
+    right: 0;
+    z-index: 3;
+
+    border-radius: 10px;
+
+    .login-form-header{
+      font-size: 18px;
+      font-weight: normal;
+      color: #202020;
+      margin: 0;
+    }
+
+
+    .checkbox{
+      margin-top: 10px;
+      margin-bottom: 0px;
+    }
+
+    .login-input{
+      height: 42px;
+      margin-top: 0px;
+      margin-bottom: 0;
+
+
+
+      .input-group-addon{
+        border: 1px solid #e5e5e5;
+        border-right: 0;
+        background: white;
+        padding: 6px 12px;
+        font-size: 14px;
+        font-weight: normal;
+        line-height: 1;
+        color: #555555;
+        text-align: center;
+        border-radius: 4px;
+      }
+
+      input{
+        border: 0px;
+        box-shadow: none;
+        height: 30px;
+        background: #f0efef;
+        background-color: rgb(250, 255, 189);
+        width: inherit;
+      }
+    }
+  }
+
+}
+
+
+.btn-primary{
+  color: #fff;
+  background-color: #28a1ff;
+  border-color: #28a1ff;
+  width: inherit;
+  height: 40px;
+  border: 0 solid ;
+  padding:2px 2px 3px;
+
+  &:hover{
+    background-color: #4cadf9;
+    border-color: #4cadf9;
+  }
+  &:active{
+    background-color: #4cadf9;
+    border-color: #4cadf9;
+  }
+  &:focus{
+    background-color: #4cadf9;
+    border-color: #4cadf9;
+  }
+}
+
+
+footer.login-footer{
+
+
+  position: fixed;
+  bottom: 0;
+  left: 0;
+
+
+
+  height: 42px;
+  background: #fff;
+  text-align: center;
+  width: 100%;
+  .footer-list{
+    overflow: hidden;
+    clear: both;
+
+    display: inline-block;
+    line-height: 45px;
+
+
+    li{
+      float: left;
+      a{
+        display: block;
+        color: #707070;
+        font-size: 12px;
+
+        &:after{
+          content: "|";
+          margin: 0 8px;
+
+
+        }
+
+        &.end:after{
+          content: "";
+        }
+
+
+      }
+    }
+  }
+
+}
+.checkboxLabel{
+  font-size: 12px;
+  margin-left: 10px;
+}
+

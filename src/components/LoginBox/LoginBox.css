@@ -1,0 +1,20 @@
+section.login-content .login-form .login-form-header {
+    font-size: 18px;
+    font-weight: normal;
+    color: #202020;
+    margin: 0;
+    text-align: center;
+    border-bottom: 1px solid #f0efef;
+    padding-bottom: 20px;
+}
+section.login-content .login-form .login-input input {
+    border: 0px;
+    box-shadow: none;
+    height: 30px;
+    background: #f0efef;
+}
+section.login-content .login-form .login-input .input-group-addon {
+    border: 0px solid #e5e5e5;
+    border-right: 0;
+    background: white;
+}

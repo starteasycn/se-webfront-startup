@@ -1,0 +1,9 @@
+footer.login-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 42px;
+    background: #fff;
+    text-align: center;
+    width: 100%;
+}
