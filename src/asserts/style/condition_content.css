@@ -1,0 +1,80 @@
+/*******************************************************************************************************************/
+/************************************查询框部分样式****************************************************************/
+/*******************************************************************************************************************/
+/*******************************************************************************************************************/
+
+.condition_label {
+    margin-left: 0px;
+    font-size: 14px;
+    vertical-align: bottom;
+}
+
+/*上 右 下 左*/
+.condition_row {
+    margin: 2px 2px 2px 20px;
+}
+
+.condition_select {
+    height: 30px;
+    line-height: 30px;
+    margin-left: 10px;
+    border: 1px solid #f1f1f1;
+    background-color: #FDFDFD;
+    outline: 0 none;
+    font-size: 13px;
+}
+
+.condition_select_button {
+    width: 130px;
+    height: 30px;
+    margin-top: 3px;
+    margin-left: 1px;
+    color: #fff;
+    border: 0px solid #e1e1e1;
+    border-radius: 5px;
+    background: #5f92e1;
+    text-align: center;
+}
+
+.width90 {
+    width: 75px;
+}
+
+.newline {
+    clear: both;
+    /*hieght:80px;*/
+    /*line-height: 80px;*/
+    /*border: 1px solid red;*/
+}
+
+.endline {
+    clear: both;
+    /*hieght:80px;*/
+    /*line-height: 80px;*/
+    /*border: 1px solid red;*/
+}
+
+.condition_span {
+    display: block;
+    float: left;
+    margin-right: 10px;
+}
+
+.date3Lable{
+    margin-left:  10px;
+    margin-right: 10px;
+    float: left;
+}
+
+.date3start{
+    float: left;
+}
+
+.date3end{
+    float: left;
+}
+
+.condition_date3_label{
+    float: left;
+
+}
