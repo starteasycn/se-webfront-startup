@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style type="text/css">
+        html{height:100%}
+        body{height:100%;margin:0px;padding:0px}
+        #container{height:100%;}
+    </style>
+    <script type="text/javascript">
+        //var centerPointJ = '108.92731'; //地图中心点坐标108.92731,34.229998
+        // var centerPointW = '34.229998';
+        var centerPointJ = '110.997943'; //地图中心点坐标108.92731,34.229998
+        var centerPointW = '35.032593';
+        var mapLev = "17";//地图默认显示级别
+
+        //手动定义jsonData可以使用下面的ajax技术动态获取
+        jsonDate = [{ title: "运城市食品药品监督管理局", Address: "运城市河东东街延长线", phone: "0359-2229203",Fax:"029-88223370", preson: "左心", linkUrl: "http://xablzsw.beilin.gov.cn/ptl/def/def/index_5_62.jsp?trid=58506", point: "110.997943|35.032593" }];
+        //ajax获取标记Json数据包
+        //function GetJsonData() {
+        //}
+
+       // 通过地址获取坐标
+
+        function getPonit(address) {
+            var url = 'http://api.map.baidu.com/geocoder/v2/?address='+address+'&output=json&ak=6rQ9ZTu8bhtVZfM6H0C54yzQvOn1khPo';
+            //通过ajax
+        }
+        function getAddress(point){
+            ///lat,lng
+            var url = 'http://api.map.baidu.com/geocoder/v2/?location='+address+'&output=json&ak=6rQ9ZTu8bhtVZfM6H0C54yzQvOn1khPo';
+        }
+
+        //绘制地图的主函数
+        function DrawMapMain() {
+            CreateMap("divMap", centerPointJ, centerPointW, mapLev);
+            AddMarker();
+            SetMapAttribute();
+
+        }
+
+        //创建初始化地图
+        function CreateMap(containerID, cPointJ, cPonitW, lev) {
+            var map = new BMap.Map(containerID); // 创建地图实例在地图容器中
+            var point = new BMap.Point(cPointJ, cPonitW); // 定义中心点坐标
+            map.centerAndZoom(point, lev); // 初始化地图，设置中心点坐标和地图级别
+            window.map = map;//将map变量存储在全局
+        }
+
+        //设置地图属性
+        function SetMapAttribute() {
+            map.addControl(new BMap.ScaleControl({ anchor: BMAP_ANCHOR_BOTTOM_LEFT })); //创建比例尺
+            //map.enableScrollWheelZoom();    //启用滚轮放大缩小，默认禁用
+            map.enableContinuousZoom();    //启用地图惯性拖拽，默认禁用
+            map.addControl(new BMap.NavigationControl());//增加地图平移缩放控件
+        }
+
+        //向地图中增加标记
+        function AddMarker() {
+            for (var index = 0; index < jsonDate.length; index++) {
+                // 角各偏移10像素和25像素。您可以看到在本例中该位置即是
+                // 图标中央下端的尖角位置。
+                //var myIcon = new BMap.Icon("http://www.iconpng.com/png/mapmarkers/marker_inside_chartreuse.png", new BMap.Size(23, 25), {offset: new BMap.Size(10, 25), imageOffset: new BMap.Size(0, 0 - index * 25)});
+                // 指定定位位置。
+                // 当标注显示在地图上时，其所指向的地理位置距离图标左上
+
+                var myIcon = new BMap.Icon("images/marker.png", new BMap.Size(25, 25));
+                var ciPonits = jsonDate[index].point.split('|');
+                var marker = new BMap.Marker(new BMap.Point(ciPonits[0], ciPonits[1]), { icon: myIcon });// 创建标记
+                var label = new BMap.Label(jsonDate[index].title,{"offset":new BMap.Size(25, 5)});
+                marker.setLabel(label);
+                marker.ciIndex = index;//将数据索引值复制给marker的自定义ciIndex属性
+
+                //为标记增加点击事件
+                marker.addEventListener("click", function (e) {
+                    var iw = CreateInfoWindow(e.target.ciIndex);
+                    map.openInfoWindow(iw, new BMap.Point(e.point.lng, e.point.lat));      // 打开信息窗口
+                });
+                map.addOverlay(marker);//将标记加入到地图中
+            }
+        }
+
+        function GetDataIndex(pointLng, pointLat) {
+            var pointVal = pointLng + "|" + pointLat;k
+            for (var i = 0; i < jsonDate.length; i++) {
+                if (jsonDate[i].point == pointVal) {
+                    return i;
+                }
+            }
+            return null;
+        }
+
+        //创建信息提示窗口
+        function CreateInfoWindow(index) {
+            var preson = jsonDate[index].preson;
+            var phone = jsonDate[index].phone;
+            var fax = jsonDate[index].Fax;
+            var address = jsonDate[index].Address;
+            var linkUrl = jsonDate[index].linkUrl;
+            var opts = {
+                width: 350,     // 信息窗口宽度
+                height: 150,     // 信息窗口高度
+                title: jsonDate[index].title  // 信息窗口标题
+            }
+
+            // 创建信息窗口对象
+
+            //var htmlText = "<div style='line-height:25px;font-size:14px;text-align:left;padding:5px;color:#666666;border-top:1px solid #CFCFCF;background-color:#EFEFF2;'>联&nbsp;&nbsp;系&nbsp;&nbsp;人：" + preson + "</br>联系电话：" + phone + "</br>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：" + address + "" + "</br><a href='" + linkUrl + "' target='_blank' style='color:blue;line-height:25px;font-size:14px;text-decoration:none;' title='点击查看详细信息'>详细信息…</a></div>";
+            var htmlText = "<div style='line-height:25px;font-size:14px;text-align:left;padding:5px;color:#666666;border-top:1px solid #CFCFCF;background-color:#EFEFF2;'>电&nbsp;&nbsp;&nbsp;&nbsp;话：" + phone + "" + "</br>传&nbsp;&nbsp;&nbsp;&nbsp;真：" + fax + "" + "</br>地&nbsp;&nbsp;&nbsp;&nbsp;址：" + address + "" + "</br>投诉热线：12331</div>";
+            var iw = new BMap.InfoWindow(htmlText, opts);
+            return iw;
+        }
+
+    </script>
+</head>
+<body>
+
+<div id="divMap" style="width:697px;height:550px;margin-left:auto;margin-right:auto; "></div>
+<script type="text/javascript">
+    DrawMapMain();
+</script>
+</body>
+</html>
